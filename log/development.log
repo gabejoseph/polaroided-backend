@@ -24359,3 +24359,29 @@ Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.3ms | Allocations: 2191)
 Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.2ms | Allocations: 2163)
 
 
+Started POST "/sessions" for ::1 at 2020-11-08 20:58:28 -0500
+Started POST "/registrations" for ::1 at 2020-11-08 20:58:28 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistrationsController#create as JSON
+  Parameters: {"name"=>"Gabriel Joseph", "email"=>"gabriel.joseph4@gmail.com", "username"=>"gjoseph", "password"=>"[FILTERED]", "registration"=>{"name"=>"Gabriel Joseph", "email"=>"gabriel.joseph4@gmail.com", "username"=>"gjoseph", "password"=>"[FILTERED]"}}
+Processing by SessionsController#create as JSON
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  Parameters: {"email"=>"gabriel.joseph4@gmail.com", "password"=>"[FILTERED]", "session"=>{"email"=>"gabriel.joseph4@gmail.com", "password"=>"[FILTERED]"}}
+  ↳ app/controllers/registrations_controller.rb:4:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "gabriel.joseph4@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "gjoseph"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+  ↳ app/controllers/registrations_controller.rb:4:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "gabriel.joseph4@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:4:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/registrations_controller.rb:4:in `create'
+Completed 200 OK in 346ms (Views: 0.4ms | ActiveRecord: 1.2ms | Allocations: 22168)
+
+
+Completed 200 OK in 32418ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 47550)
+
+
